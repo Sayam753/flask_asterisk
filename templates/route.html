@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>{{ info }}</h1>
+
+    <div>
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <!-- This is adding CSRF token -->
+    
+            <fieldset>
+                <div>
+                    {{ form.storeID.label() }}
+    
+                    {% if form.storeID.errors %}
+                        {{ form.storeID() }}
+                        <div>
+                            {% for error in form.storeID.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.storeID() }}
+                    {% endif %}
+                </div>
+
+                <div>
+                    {{ form.nexmoDID.label() }}
+    
+                    {% if form.nexmoDID.errors %}
+                        {{ form.nexmoDID() }}
+                        <div>
+                            {% for error in form.nexmoDID.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.nexmoDID() }}
+                    {% endif %}
+                </div>
+
+                <div>
+                    {{ form.apiServer.label() }}
+    
+                    {% if form.apiServer.errors %}
+                        {{ form.apiServer() }}
+                        <div>
+                            {% for error in form.apiServer.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.apiServer() }}
+                    {% endif %}
+                </div>
+            </fieldset>
+    
+            <div>
+                {{ form.submit() }}
+            </div>
+        </form>
+    </div>
+{% endblock content %}
