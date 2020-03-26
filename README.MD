@@ -61,3 +61,24 @@ Route(storeID: S12345, nexmoDID: 3159556969, apiServer: http://192.168.10.0)
 ```
 
 Use `filter_by` to filter out the results based on a particular field.
+
+### Check if a storeID exists
+
+```python
+>>> def check_route(route):
+...     if route:
+...             print(route)
+...     else:
+...             print('No route found with given storeID')
+...
+>>> Route.query.all()
+[Route(storeID: S12345, nexmoDID: 3159556969, apiServer: http://192.168.10.0)]
+>>>
+>>> route = Route.query.filter_by(storeID='S12345').first()
+>>> check_route(route)
+Route(storeID: S12345, nexmoDID: 3159556969, apiServer: http://192.168.10.0)
+>>>
+>>> route = Route.query.filter_by(storeID='S123').first()
+>>> check_route(route)
+No route found with given storeID
+```
