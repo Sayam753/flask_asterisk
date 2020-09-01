@@ -24,10 +24,18 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarToggle">
-                    <!-- Navbar Right Side -->
-                    <div class="navbar-nav">
+                    <div class="navbar-nav mr-auto">
                         <a class="nav-item nav-link" href="{{ url_for('new_route') }}">Create New Route</a>
                     </div>
+                    <!-- Navbar Right Side -->
+                    <div class="navbar-nav">
+                        {% if current_user.is_authenticated %}
+                        <a class="nav-item nav-link" href="{{ url_for('list_users') }}">List all Users</a>
+                        <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a> {% else %}
+                        <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
+                        <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a> {% endif %}
+                    </div>
+
                 </div>
             </div>
         </nav>
@@ -35,7 +43,7 @@
 
     <main role="main" class="container">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 {% with messages=get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %}
                 <div class="alert alert-{{ category }}">
                     {{ message }}
